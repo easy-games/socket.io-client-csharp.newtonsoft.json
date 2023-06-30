@@ -153,7 +153,7 @@ namespace SocketIOClient
             _eventHandlers = new Dictionary<string, Action<SocketIOResponse>>();
             _onAnyHandlers = new List<OnAnyHandler>();
 
-            JsonSerializer = new SystemTextJsonSerializer();
+            JsonSerializer = new NewtonsoftJsonSerializer();
 
             HttpClient = new DefaultHttpClient();
             ClientWebSocketProvider = () => new DefaultClientWebSocket();

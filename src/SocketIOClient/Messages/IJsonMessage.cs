@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Text.Json;
+﻿using Newtonsoft.Json.Linq;
 
 namespace SocketIOClient.Messages
 {
-    public interface IJsonMessage : IMessage
+	public interface IJsonMessage : IMessage
     {
-        List<JsonElement> JsonElements { get; }
+        JArray JsonElements { get; }
     }
 }

@@ -15,6 +15,7 @@ using SocketIOClient.Messages;
 using SocketIOClient.Transport;
 using SocketIOClient.Transport.Http;
 using SocketIOClient.Transport.WebSockets;
+using Newtonsoft.Json;
 
 [assembly: Parallelize(Workers = 8, Scope = ExecutionScope.ClassLevel)]
 
@@ -524,8 +525,7 @@ namespace SocketIOClient.UnitTests
                         m =>
                         {
                             var msg = (EventMessage)m;
-                            var text = System.Text.Json.JsonSerializer.Serialize(
-                                "hello world 你好🌍🌏🌎 hello world");
+                            var text = JsonConvert.SerializeObject("hello world 你好🌍🌏🌎 hello world");
                             return msg.Event == "1 param" && msg.Json == $"[{text}]";
                         }),
                     (

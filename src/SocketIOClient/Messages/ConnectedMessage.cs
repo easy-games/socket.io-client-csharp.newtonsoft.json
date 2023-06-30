@@ -2,7 +2,7 @@
 using SocketIOClient.Transport;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SocketIOClient.Messages
 {
@@ -60,7 +60,7 @@ namespace SocketIOClient.Messages
             {
                 Namespace = string.Empty;
             }
-            Sid = JsonDocument.Parse(msg).RootElement.GetProperty("sid").GetString();
+            Sid = JObject.Parse(msg).Value<string>("sid");
         }
 
         private string Eio4Write()

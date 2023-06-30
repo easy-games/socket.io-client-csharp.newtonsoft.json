@@ -48,7 +48,7 @@ namespace SocketIOClient.IntegrationTests.Transport.WebSockets
                     var em = a as EventMessage;
                     if (em is null)
                         return false;
-                    return em.JsonElements[0].GetString() == b;
+                    return em.JsonElements[0].ToString() == b;
                 });
         }
 

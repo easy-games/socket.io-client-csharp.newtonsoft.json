@@ -106,7 +106,7 @@ public class WebSocketTransportTest
         if (msg is IJsonMessage jsonMsg)
         {
             jsonMsg.JsonElements
-                .Select(x => x.GetRawText())
+                .Select(x => x.ToString())
                 .Should()
                 .Equal(expectedElements);
         }
@@ -183,7 +183,7 @@ public class WebSocketTransportTest
                         },
                         new[]
                         {
-                            $"\"{new string('a', ChunkSize.Size8K)}\"",
+                            $"{new string('a', ChunkSize.Size8K)}",
                         },
                         null),
                     (
@@ -263,14 +263,13 @@ public class WebSocketTransportTest
                         {
                             "{\"_placeholder\":true,\"num\":0}",
                             "{\"_placeholder\":true,\"num\":1}",
-                            $"\"{new string('a', ChunkSize.Size8K)}\"",
+                            $"{new string('a', ChunkSize.Size8K)}",
                         },
                         new List<byte[]>
                         {
                             Enumerable.Repeat<byte>(0xff, ChunkSize.Size8K + 1).ToArray(),
                             Enumerable.Repeat<byte>(0xee, ChunkSize.Size8K + 1).ToArray(),
                         }),
-
                     (
                         EngineIO.V3,
                         new List<(TransportMessageType type, byte[] data)>
